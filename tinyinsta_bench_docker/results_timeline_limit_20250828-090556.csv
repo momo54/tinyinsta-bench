@@ -1,0 +1,13 @@
+timestamp,sql_file,n_users,clients,duration_s,run_index,tps,latency_ms,latency_std_ms,errors,returncode,cmd
+2025-08-28T09:06:16,timeline_limit.sql,10000,1,20,1,126.146266,7.927,0.57,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 1 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:06:36,timeline_limit.sql,10000,1,20,2,126.266434,7.919,0.456,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 1 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:06:56,timeline_limit.sql,10000,2,20,1,239.864632,8.331,0.61,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 2 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:07:16,timeline_limit.sql,10000,2,20,2,240.659503,8.304,0.392,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 2 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:07:36,timeline_limit.sql,10000,4,20,1,483.284961,8.272,1.365,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 4 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:07:56,timeline_limit.sql,10000,4,20,2,488.981087,8.176,1.0,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 4 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:08:16,timeline_limit.sql,10000,8,20,1,790.344976,10.118,2.082,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 8 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:08:36,timeline_limit.sql,10000,8,20,2,763.974371,10.468,3.168,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 8 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:08:56,timeline_limit.sql,10000,16,20,1,802.045512,19.934,6.774,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 16 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:09:16,timeline_limit.sql,10000,16,20,2,799.193749,20.002,7.007,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 16 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:09:36,timeline_limit.sql,10000,32,20,1,799.387714,39.97,11.529,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 32 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000
+2025-08-28T09:09:56,timeline_limit.sql,10000,32,20,2,800.56248,39.905,11.903,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 32 -T 20 -P 5 -d postgresql://postgres:postgres@db:5432/tinyinsta -D n_users=10000

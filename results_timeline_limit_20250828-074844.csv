@@ -1,0 +1,13 @@
+timestamp,sql_file,n_users,clients,duration_s,run_index,tps,latency_ms,latency_std_ms,errors,returncode,cmd
+2025-08-28T07:49:04,timeline_limit.sql,10000,1,20,1,114.868721,8.697,1.252,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 1 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:49:25,timeline_limit.sql,10000,1,20,2,116.103547,8.604,0.87,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 1 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:49:45,timeline_limit.sql,10000,2,20,1,226.088051,8.827,1.08,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 2 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:50:05,timeline_limit.sql,10000,2,20,2,227.208339,8.784,0.94,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 2 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:50:25,timeline_limit.sql,10000,4,20,1,448.653726,8.902,1.146,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 4 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:50:45,timeline_limit.sql,10000,4,20,2,449.540132,8.884,0.914,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 4 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:51:05,timeline_limit.sql,10000,8,20,1,731.691546,10.924,2.255,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 8 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:51:25,timeline_limit.sql,10000,8,20,2,734.586215,10.88,2.118,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 8 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:51:45,timeline_limit.sql,10000,16,20,1,717.165422,22.282,8.046,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 16 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:52:05,timeline_limit.sql,10000,16,20,2,675.814462,23.649,8.378,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 16 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:52:25,timeline_limit.sql,10000,32,20,1,628.572201,50.812,19.583,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 32 -T 20 -P 5 -d tinyinsta -D n_users=10000
+2025-08-28T07:52:46,timeline_limit.sql,10000,32,20,2,560.169232,57.019,19.576,0,0,pgbench -n -M prepared -f timeline_limit.sql -c 32 -T 20 -P 5 -d tinyinsta -D n_users=10000
