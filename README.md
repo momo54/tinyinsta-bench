@@ -42,11 +42,72 @@ pgbench -n -M prepared -f timeline_limit.sql -c 16 -T 30 -P 5 -d tinyinsta -D n_
 pgbench -n -M prepared -f insert_post.sql -c 16 -T 30 -P 5 -d tinyinsta -D n_users=10000
 ```
 
-## Notes
 
-- Adjust `n_users`, `posts_per_user`, and `follows_per_user` in `load.sql`.
-- Use `-c 1,2,4,8,16,32` to sweep client concurrency and observe throughput scaling.
-- Ensure PostgreSQL has enough `work_mem` for sorts.
+## Utilisation avec Citus (sharding PostgreSQL)
+
+### Installation et activation
+
+1. Installer Citus (macOS/Homebrew) :
+   ```sh
+   brew install citus
+   ```
+2. Ajouter dans `postgresql.conf` :
+   ```
+   shared_preload_libraries = 'citus'
+   ```
+3. Redémarrer PostgreSQL :
+   ```sh
+   brew services restart postgresql
+   ```
+4. Activer l'extension dans la base :
+   ```sql
+   CREATE EXTENSION citus;
+   ```
+
+### Recharger le schéma et les données
+
+```sh
+psql -d tinyinsta -f schema.sql
+psql -d tinyinsta -f load.sql
+```
+
+### Commandes utiles Citus
+
+- Voir les tables distribuées et de référence :
+  ```sql
+  SELECT * FROM citus_tables;
+  ```
+- Voir la liste des shards :
+  ```sql
+  SELECT shardid, 'post_' || shardid AS shard_table FROM pg_dist_shard WHERE logicalrelid = 'post'::regclass;
+  ```
+- Voir le contenu d'un shard :
+  ```sql
+  SELECT * FROM post_XXXXX LIMIT 10;  -- Remplacer XXXXX par l'ID du shard
+  ```
+- Voir la répartition physique des shards :
+  ```sql
+  SELECT * FROM pg_dist_placement;
+  ```
+
+### Analyse de requête distribuée
+
+- EXPLAIN sur une requête sharded :
+  ```sql
+  EXPLAIN SELECT * FROM post WHERE user_id = 1;
+  ```
+  (Citus n'interroge qu'un seul shard)
+
+- EXPLAIN sur une requête fanout (timeline) :
+  ```sql
+  EXPLAIN SELECT p.* FROM post p WHERE p.user_id = 1 OR p.user_id IN (SELECT followee_id FROM follower_followee WHERE follower_id = 1) ORDER BY p.created_at DESC;
+  ```
+  (Citus parallélise sur tous les shards)
+
+> Astuce : Pour réinitialiser les données sans recréer le schéma :
+> ```sql
+> TRUNCATE TABLE follower_followee, post, users RESTART IDENTITY CASCADE;
+> ```
 
 ## Auto sweep + CSV + plots
 

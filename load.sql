@@ -13,11 +13,11 @@ WITH params AS (
 )
 INSERT INTO follower_followee(follower_id, followee_id)
 SELECT f AS follower_id,
-       ((random()* (p.n-1))::int + 1) AS followee_id
+       CASE WHEN x < f THEN x ELSE x + 1 END AS followee_id
 FROM params p,
      LATERAL generate_series(1, p.n) u(f),
-     LATERAL generate_series(1, p.k) r
-WHERE ((random()* (p.n-1))::int + 1) <> f
+     LATERAL generate_series(1, p.k) r,
+     LATERAL (SELECT (floor(random() * (p.n - 1))::int + 1) AS x) AS sub
 ON CONFLICT DO NOTHING;
 
 -- Posts
